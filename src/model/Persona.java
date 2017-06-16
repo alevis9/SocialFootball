@@ -47,7 +47,7 @@ public abstract class Persona {
 	private String twitter;
 
 	@OneToMany(mappedBy="utente", cascade = {CascadeType.ALL},  fetch= FetchType.EAGER)
-	private List<Attivita> attivita;
+	private List<Partita> attivita;
 	@OneToMany(cascade = {CascadeType.ALL},  fetch= FetchType.EAGER)
 	private List<Presidente> startupsFollowing;
 
@@ -82,15 +82,15 @@ public abstract class Persona {
 	public Persona() {
 	}
 
-	public void addAttivita(Attivita a) {
+	public void addAttivita(Partita a) {
 		if (this.attivita == null)
-			this.attivita = new ArrayList<Attivita>();
+			this.attivita = new ArrayList<Partita>();
 		this.attivita.add(a);
 	}
 
-	public List<Attivita> getAttivita() {
+	public List<Partita> getAttivita() {
 		if (this.attivita == null)
-			this.attivita = new ArrayList<Attivita>();
+			this.attivita = new ArrayList<Partita>();
 		return attivita;
 	}
 
