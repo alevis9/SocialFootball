@@ -47,9 +47,9 @@ public abstract class Persona {
 	private String twitter;
 
 	@OneToMany(mappedBy="utente", cascade = {CascadeType.ALL},  fetch= FetchType.EAGER)
-	private List<Partita> attivita;
+	private List<Partita> partita;
 	@OneToMany(cascade = {CascadeType.ALL},  fetch= FetchType.EAGER)
-	private List<Presidente> startupsFollowing;
+	private List<Presidente> presidenteFollowing;
 
 	public Persona(String nome, String email, String password, String avatar,
 			String sitoWeb, String facebook, String twitter, String linkedIn)
@@ -82,28 +82,28 @@ public abstract class Persona {
 	public Persona() {
 	}
 
-	public void addAttivita(Partita a) {
-		if (this.attivita == null)
-			this.attivita = new ArrayList<Partita>();
-		this.attivita.add(a);
+	public void addPartita(Partita a) {
+		if (this.partita == null)
+			this.partita = new ArrayList<Partita>();
+		this.partita.add(a);
 	}
 
-	public List<Partita> getAttivita() {
-		if (this.attivita == null)
-			this.attivita = new ArrayList<Partita>();
-		return attivita;
+	public List<Partita> getPartite() {
+		if (this.partita == null)
+			this.partita = new ArrayList<Partita>();
+		return partita;
 	}
 
-	public void addStartup(Presidente s) {
-		if (this.startupsFollowing == null)
-			this.startupsFollowing = new ArrayList<Presidente>();
-		this.startupsFollowing.add(s);
+	public void addPresidente(Presidente s) {
+		if (this.presidenteFollowing == null)
+			this.presidenteFollowing = new ArrayList<Presidente>();
+		this.presidenteFollowing.add(s);
 	}
 
-	public List<Presidente> getStartupsFollowing() {
-		if (this.startupsFollowing == null)
-			this.startupsFollowing = new ArrayList<Presidente>();
-		return startupsFollowing;
+	public List<Presidente> getPresidenteFollowing() {
+		if (this.presidenteFollowing == null)
+			this.presidenteFollowing = new ArrayList<Presidente>();
+		return presidenteFollowing;
 	}
 
 	public Long getId() {

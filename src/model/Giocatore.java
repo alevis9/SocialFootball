@@ -42,7 +42,7 @@ public class Giocatore extends Persona {
 
 	}
 
-	public void addMembroAmico(Giocatore m) {
+	public void addGiocatoreAmico(Giocatore m) {
 		if (this.amici == null)
 			this.amici = new ArrayList<Giocatore>();
 		this.amici.add(m);

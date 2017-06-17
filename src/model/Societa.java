@@ -35,7 +35,7 @@ public class Societa {
 
 	@OneToMany(cascade = { CascadeType.ALL }, fetch= FetchType.EAGER)
 	@JoinColumn(name = "comunita_id")
-	private List<Partita> attivita;
+	private List<Partita> partita;
 
 	public Societa() {
 		this.persone = new ArrayList<Persona>();
@@ -51,31 +51,31 @@ public class Societa {
 		return res;
 	}
 
-	public Persona GetUser(String email) throws PersonaNonEsistenteException {
+	public Persona GetPersona(String email) throws PersonaNonEsistenteException {
 		Persona res = personaByEmail(email);
 		if (res == null)
 			throw new PersonaNonEsistenteException();
 		return res;
 	}
 
-	public void aggiungiUtente(Persona nuovoUtente)
+	public void aggiungiPersona(Persona nuovoPresidente)
 			throws PersonaGiaEsistenteException {
 		if(this.persone==null)
 			this.persone = new ArrayList<Persona>();
-		if (personaByEmail(nuovoUtente.getEmail()) != null)
+		if (personaByEmail(nuovoPresidente.getEmail()) != null)
 			throw new PersonaGiaEsistenteException();
 		else
-			this.persone.add(nuovoUtente);
+			this.persone.add(nuovoPresidente);
 	}
 
-	public void addAttivita(Partita a) {
-		if (this.attivita == null)
-			this.attivita = new ArrayList<Partita>();
-		this.attivita.add(a);
+	public void addPartita(Partita p) {
+		if (this.partita == null)
+			this.partita = new ArrayList<Partita>();
+		this.partita.add(p);
 	}
 
 	public List<Partita> getAttivita() {
-		return attivita;
+		return partita;
 	}
 
 	public List<Giocatore> getGiocatori() {

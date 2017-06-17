@@ -48,7 +48,7 @@ public class Partita {
 		this.titolo = titolo;
 		this.testo = testo;
 		this.persona = persona;
-		persona.addAttivita(this);
+		persona.addPartita(this);
 	}
 	
 	private Partita(){
