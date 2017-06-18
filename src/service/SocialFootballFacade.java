@@ -121,7 +121,7 @@ public class SocialFootballFacade {
 	}
 
 
-	public void modificaMembro(Giocatore g, String avatar, String biografia,
+	public void modificaGiocatore(Giocatore g, String avatar, String biografia,
 			String annoDiNascita, String sitoWeb, String facebook,
 			String twitter, String linkedIn) {
 		g.setAvatar(avatar);
@@ -135,7 +135,7 @@ public class SocialFootballFacade {
 	}
 
 
-	public void modificPresidente(Presidente p, String dataCreazione,
+	public void modificaPresidente(Presidente p, String dataCreazione,
 			String descrizioneBreve, String descrizione, String avatar,
 			String motto, String sitoWeb, String facebook, String twitter,
 			String linkedIn) {
