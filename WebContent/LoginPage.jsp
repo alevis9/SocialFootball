@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@page import="model.*"%>
-<%@page import="service.*"%>
-<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +15,7 @@
 <link rel="publisher"
 	href="https://plus.google.com/[YOUR BUSINESS G+ PROFILE HERE]" />
 <link rel="icon" href="/favicon.ico">
+
 <!--twitter-->
 <meta name="twitter:card" content="summary">
 <!--summary, photo or player-->
@@ -25,7 +23,7 @@
 <meta name="twitter:title" content="title">
 <meta name="twitter:description" content="desc">
 <meta name="twitter:image" content="http://">
-<!--should be a square image no smaller than 60Ã—60 pixels.-->
+<!--should be a square image no smaller than 60×60 pixels.-->
 <!-- Bootstrap -->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -37,45 +35,37 @@
     <![endif]-->
 </head>
 <body>
-	<nav class="navbar navbar-default" style="border-radius: 0px; background: rgb(0, 102, 153); border:0px">
+	<nav class="navbar navbar-default"
+		style="border-radius: 0px; background: rgb(0, 102, 153); border: 0px">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="HomePage.jsp" style="color: white;">SocialStartup</a>
+				<a class="navbar-brand" href="#" style="color: white;">SocialStartup</a>
 			</div>
 			<div>
 				<ul class="nav navbar-nav navbar-right">
-					<%
-						if (session.getAttribute("CurrentPersona") instanceof Giocatore)
-							out.print("<li><a style=\"color: white;\" href=\"ListaGiocatoriPage.jsp\"> <span class=\"glyphicon glyphicon-globe\"></span> Lista Utenti</a></li>");
-					%>
-					<li><a style="color:white;" href="/SignUp.jsp"><span
+					<li><a style="color: white;" href="SignUp.jsp"><span
 							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-							<li><a style="color: white;"
-						href="ProfilePageController?emailProfile=${CurrentPersona.email}"> <img
-							src="${CurrentPersona.avatar}" style="width: 30px; height: 30px;" />
-							${CurrentPersona.nome}
-					</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-dm-6 col-dm-offset-3">
-				<form action="loginController" method="get">
+			<div class="col-sm-6 col-sm-offset-2">
+				<form action="LoginController" method="get">
 					<h2>Login</h2>
-					<p class=".text-danger">${loginError}</p>
+					<p class="text-danger">${loginError}</p>
 					<table>
 						<tr>
 							<td>email:</td>
 							<td><input type="email" name="email"
-								placeholder="enter your email"></input></td>
+								placeholder="enter your email" required></input></td>
 						</tr>
 						<tr>
 							<td>password:</td>
 							<td><input type="password" name="password"
-								placeholder="create a password"></input></td>
+								placeholder="create a password" required></input></td>
 						</tr>
 					</table>
 					<input type="submit" name="sumbit" value="login" />
