@@ -13,11 +13,11 @@ import javax.persistence.Query;
 import exceptions.*;
 import model.*;
 //importare il seguente quando si deve chiamare la facade
-//@EJB(beanName="SocialStartupFacade")
-//private SocialStartupFacade facade;
+//@EJB(beanName="SocialFootballFacade")
+//private SocialFootballFacade facade;
 
 
-@Stateless(name = "SocialStartupFacade")
+@Stateless(name = "SocialFootballFacade")
 public class SocialFootballFacade {
 
 
@@ -25,7 +25,7 @@ public class SocialFootballFacade {
 	}
 
 
-	@PersistenceContext(unitName = "FootballAlevis")
+	@PersistenceContext(unitName = "SocialFootball")
 	private EntityManager em;
 
 
