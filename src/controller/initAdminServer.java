@@ -22,7 +22,7 @@ public class initAdminServer extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		facade.initSocialStartup();
+		facade.initSocialFootball();
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -36,5 +36,4 @@ public class initAdminServer extends HttpServlet {
 		out.println("<h1>Server inizializzato!</h1>");
 		out.println("</body>\n</html> ");
 	}
-
 }

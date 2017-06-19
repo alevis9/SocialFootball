@@ -14,7 +14,7 @@ import exceptions.*;
 import model.*;
 import service.*;
 
-@WebServlet("/StartupPresidenteController")
+@WebServlet("/PresidenteSignUpController")
 public class PresidenteSignUpController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@EJB(beanName="SocialFootballFacade")

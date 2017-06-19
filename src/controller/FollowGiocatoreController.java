@@ -15,19 +15,19 @@ import service.SocialFootballFacade;
 import model.Persona;
 
 //
-@WebServlet("/FollowMembroController")
-public class FollowCalciatoreController extends HttpServlet {
+@WebServlet("/FollowGiocatoreController")
+public class FollowGiocatoreController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@EJB(beanName = "SocialStartupFacade")
+	@EJB(beanName = "SocialFootballFacade")
 	private SocialFootballFacade facade;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		String emailMembroDaSeguire = request.getParameter("membroDaSeguire");
+		String emailMembroDaSeguire = request.getParameter("giocatoreDaSeguire");
 
 		HttpSession session = request.getSession();
-		Persona p = (Persona) session.getAttribute("CurrentUser");
+		Persona p = (Persona) session.getAttribute("CurrentPersona");
 		facade.aggiungiFollowingCalciatore(p, emailMembroDaSeguire);
 
 		ServletContext application = getServletContext();

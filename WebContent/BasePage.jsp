@@ -48,7 +48,7 @@
 						if (session.getAttribute("CurrentPersona") instanceof Giocatore)
 							out.print("<li><a style=\"color: white;\" href=\"ListaGiocatoriPage.jsp\"> <span class=\"glyphicon glyphicon-globe\"></span> Lista Utenti</a></li>");
 					%>
-					<li><a style="color:white;" href="/SignUp.jsp"><span
+					<li><a style="color:white;" href="SignUp.jsp"><span
 							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 							<li><a style="color: white;"
 						href="ProfilePageController?emailProfile=${CurrentPersona.email}"> <img

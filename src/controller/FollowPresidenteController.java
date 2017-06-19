@@ -14,19 +14,19 @@ import javax.servlet.http.HttpSession;
 import model.Persona;
 import service.SocialFootballFacade;
 
-@WebServlet("/FollowStartupController")
+@WebServlet("/FollowPresidenteController")
 public class FollowPresidenteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@EJB(beanName = "SocialStartupFacade")
+	@EJB(beanName = "SocialFootballFacade")
 	private SocialFootballFacade facade;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		String emailStartupDaSeguire = request.getParameter("startupDaSeguire");
+		String emailStartupDaSeguire = request.getParameter("presidenteDaSeguire");
 
 		HttpSession session = request.getSession();
-		Persona p = (Persona) session.getAttribute("CurrentUser");
+		Persona p = (Persona) session.getAttribute("CurrentPersona");
 		facade.aggiungiFollowingPresidente(p, emailStartupDaSeguire);
 
 		ServletContext application = getServletContext();

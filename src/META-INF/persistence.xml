@@ -2,15 +2,15 @@
 <persistence version="2.0"
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="StartupLucDav" transaction-type="JTA">
+	<persistence-unit name="SocialFootball" transaction-type="JTA">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<jta-data-source>PostgreSQL Database</jta-data-source>
  	<!--  	<non-jta-data-source>PostgreSQL Database</non-jta-data-source> -->
-		<class>Model.Societa</class>
-		<class>Model.Partita</class>		
-		<class>Model.Persona</class>
-		<class>Model.Giocatore</class>
-		<class>Model.Presidente</class>		
+		<class>model.Societa</class>
+		<class>model.Partita</class>		
+		<class>model.Persona</class>
+		<class>model.Giocatore</class>
+		<class>model.Presidente</class>		
 		<properties>
 			<property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
 			<property name="openjpa.ConnectionUserName" value="postgres" />

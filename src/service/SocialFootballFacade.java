@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-
 import exceptions.*;
 import model.*;
 //importare il seguente quando si deve chiamare la facade
@@ -29,17 +28,8 @@ public class SocialFootballFacade {
 	private EntityManager em;
 
 
-	// public static Comunita GetComunita() {
-	// if (comunita == null) {
-	// comunita = new Comunita();
-	// SocialStartupFacade.CreaDatiFinti(comunita);
-	// }
-	// return comunita;
-	// }
-
-
 	// viene chiamato solo la prima volta dagli amministratori di sistema
-	public void initSocialStartup() {
+	public void initSocialFootball() {
 		Societa s = new Societa();
 		s.setNome("SocialFootballSocieta");
 		CreaDatiFinti(s);

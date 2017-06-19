@@ -15,7 +15,7 @@ import exceptions.*;
 import model.*;
 import service.*;
 
-@WebServlet("/MembroSignupController")
+@WebServlet("/GiocatoreSignUpController")
 public class GiocatoreSignupController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
