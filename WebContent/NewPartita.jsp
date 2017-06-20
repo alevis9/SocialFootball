@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@page import="model.*"%>
 <%@page import="service.*"%>
 <%@page import="java.util.*"%>
@@ -10,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>SocialFootball - Modifica Profilo</title>
+<title>SocialFootball - Login</title>
 <meta name="author" content="">
 <meta name="description" content="155 characters">
 <meta name="keywords" content="web,design,html,css,html5,development">
@@ -40,13 +41,12 @@
 		style="border-radius: 0px; background: rgb(0, 102, 153); border: 0px">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="HomePage.jsp" style="color: white;">SocialStartup</a>
+				<a class="navbar-brand" href="HomePage.jsp" style="color: white;">SocialFootball</a>
 			</div>
 			<div>
 				<ul class="nav navbar-nav navbar-right">
 					<%
-						Persona pe = (Persona) session.getAttribute("CurrentPersona");
-						if (pe instanceof Giocatore)
+						if (session.getAttribute("CurrentPersona") instanceof Giocatore)
 							out.print("<li><a style=\"color: white;\" href=\"ListaGiocatoriPage.jsp\"> <span class=\"glyphicon glyphicon-globe\"></span> Lista Persone</a></li>");
 					%>
 					<li><a style="color: white;" href="ListaPresidentiPage.jsp">
@@ -63,57 +63,41 @@
 		</div>
 	</nav>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-6 col-sm-offset-1">
-				<form action="ModificaUtenteController" method="get">
+			<div class="col-sm-6 col-sm-offset-2">
+				<form action="NewPartitaController" method="get">
+					<p class="text-danger">${newPartitaError}</p>
 					<table>
-						<%
-							if (pe instanceof Presidente) {
-								Presidente pr = (Presidente) pe;
-								out.print("<tr><td>Descrizione breve:</td><td colspan=\"3\"><input row=\"2\" type=\"text\" name=\"descBreve\" value=\""
-										+ pr.getDescrizioneBreve() + "\"></input></td></tr>");
-								out.print("<tr><td>Descrizione:</td><td colspan=\"3\"><input row=\"5\" type=\"text\" name=\"desc\" value=\""
-										+ pr.getDescrizione() + "\"></input></td></tr>");
-								out.print("<tr><td>Motto:</td><td><input type=\"text\" name=\"motto\" value=\""
-										+ pr.getMotto() + "\"></td></tr>");
-							} else {
-								Giocatore g = (Giocatore) pe;
-								out.print("<tr><td>Biografia:</td><td><input type=\"text\" name=\"biografia\" value=\""
-										+ g.getBiografia() + "\"></input></td></tr>");
-								out.print("<tr><td>Anno di nascita:</td><td><input type=\"text\" name=\"annoNascita\" value=\""
-										+ g.getAnnoDiNascita() + "\"></input></td></tr>");
-							}
-						%>
+						<tr>
+							<td colspan="2"><input type="text" name="titolo"
+								placeholder="titolo..." required></input></td>
+						</tr>
+						<tr>
+							<td><input type="text" name="testo"
+								placeholder="share your thoughts..." required></input></td>
+						</tr>
+						<tr>
+							<td colspan="2">Url: <br> <input type="url"
+								name="url"></input>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">Image: <br> <input type="url"
+								name="imageUrl"></input>
+							</td>
+						</tr>
+						<tr>
 
-						<tr>
-							<td>Url Avatar:</td>
-							<td><input type="text" name="urlImg"
-							value="${CurrentPersona.avatar}"/></td>
-						</tr>
-
-						<tr>
-							<td>Sito Web:</td>
-							<td><input type="text" name="sito"
-							value="${CurrentPersona.sitoWeb}"/></td>
+							<td colspan="2">Video: <br> <input type="url"
+								name="videoUrl"></input>
+							</td>
 						</tr>
 						<tr>
-							<td>Facebook:</td>
-							<td><input type="text" name="facebook"
-							value="${CurrentPersona.facebook}"/></td>
-						</tr>
-						<tr>
-							<td>Twitter:</td>
-							<td><input type="text" name="twitter"
-								value="${CurrentPersona.twitter}" /></td>
-						</tr>
-						<tr>
-							<td>Linkedin:</td>
-							<td><input type="text" name="linkedIn"
-							value="${CurrentPersona.linkedIn}" /></td>
+							<td></td>
+							<td><input type="submit" name="sumbit" value="create" /></td>
 						</tr>
 					</table>
-					<br> <input type="submit" name="sumbit" value="salva" />
 				</form>
 			</div>
 		</div>

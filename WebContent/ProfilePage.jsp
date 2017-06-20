@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@page import="model.*"%>
 <%@page import="service.*"%>
 <%@page import="java.util.*"%>
@@ -10,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>SocialFootball - Modifica Profilo</title>
+<title>SocialFootball - Profile</title>
 <meta name="author" content="">
 <meta name="description" content="155 characters">
 <meta name="keywords" content="web,design,html,css,html5,development">
@@ -37,14 +38,15 @@
 </head>
 <body>
 	<nav class="navbar navbar-default"
-		style="border-radius: 0px; background: rgb(0, 102, 153); border: 0px">
+		style="border-radius: 0px; background: rgb(0, 102, 153); border: 0px; margin-bottom: 0px;">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="HomePage.jsp" style="color: white;">SocialStartup</a>
+				<a class="navbar-brand" href="HomePage.jsp" style="color: white;">SocialFootball</a>
 			</div>
 			<div>
 				<ul class="nav navbar-nav navbar-right">
 					<%
+						Persona profilePersona = (Persona) request.getAttribute("ProfilePersona");
 						Persona pe = (Persona) session.getAttribute("CurrentPersona");
 						if (pe instanceof Giocatore)
 							out.print("<li><a style=\"color: white;\" href=\"ListaGiocatoriPage.jsp\"> <span class=\"glyphicon glyphicon-globe\"></span> Lista Persone</a></li>");
@@ -52,69 +54,69 @@
 					<li><a style="color: white;" href="ListaPresidentiPage.jsp">
 							<span class="glyphicon glyphicon-globe"> </span> Lista Presidenti
 					</a></li>
+					<%
+						if (pe.equals(profilePersona))
+								out.print("<li><a style=\"color: white;\" href=\"ModificaPersonaPage.jsp\"><span class=\"glyphicon glyphicon-cog\"> </span> Settings</a></li>");
+					%>
 
-					<li><a style="color: white;"
-						href="ProfilePageController?emailProfile=${CurrentPersona.email}">
-							<img src="${CurrentPersona.avatar}"
-							style="width: 30px; height: 30px;" /> ${CurrentPersona.nome}
-					</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	<div class="container-fluid"
+		style="height: 350px; background: rgb(0, 82, 133); color: white;">
+		<p style="text-align: center; font-size: 140%; margin-top: 15px;">
+			<%
+				if (profilePersona instanceof Presidente)
+				 	out.print(((Presidente) profilePersona).getMotto());
+			%>
+		</p>
+		<div style="margin-top: 15px;">
+			<img src="${ProfilePersona.avatar}" class="img-circle img-responsive"
+				alt="${ProfilePersona.nome} avatar"
+				style="width: 220px; height: 220px; margin-left: auto; margin-right: auto;" />
+			<h3 style="text-align: center;">${ProfilePersona.nome} 
+			<%
+			if(!pe.equals(profilePersona))
+			{
+			if (profilePersona instanceof Giocatore && pe instanceof Giocatore &&
+					!(((Giocatore)pe).getAmici().contains(profilePersona)))
+				out.print("<a href=\"FollowGiocatoreController?giocatoreDaSeguire="+profilePersona.getEmail()+
+						  "\"><span class=\"glyphicon glyphicon-heart-empty\"/></a>");
+			else if (profilePersona instanceof Presidente && !(pe.getPresidenteFollowing().contains(profilePersona)))
+				out.print("<a href=\"FollowPresidenteController?presidenteDaSeguire="+profilePersona.getEmail()+
+						  "\"><span class=\"glyphicon glyphicon-heart-empty\"/></a>");
+			}
+		%></h3>
+			<br>
+		</div>
 
+	</div>
+	<div
+		style="background: rgb(229, 229, 229); margin-left: 0px; margin-bottom: 0px; margin-right: 0px; color: black; padding-left: 15px; padding-right: 15px; padding-top: 10px">
+		<p>
+			<%
+				if (profilePersona instanceof Presidente)
+					out.print(((Presidente) profilePersona).getDescrizione());
+				else
+					out.print(((Giocatore) profilePersona).getBiografia());
+			%>
+		</p>
+		
+
+		<br>
+	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6 col-sm-offset-1">
-				<form action="ModificaUtenteController" method="get">
-					<table>
-						<%
-							if (pe instanceof Presidente) {
-								Presidente pr = (Presidente) pe;
-								out.print("<tr><td>Descrizione breve:</td><td colspan=\"3\"><input row=\"2\" type=\"text\" name=\"descBreve\" value=\""
-										+ pr.getDescrizioneBreve() + "\"></input></td></tr>");
-								out.print("<tr><td>Descrizione:</td><td colspan=\"3\"><input row=\"5\" type=\"text\" name=\"desc\" value=\""
-										+ pr.getDescrizione() + "\"></input></td></tr>");
-								out.print("<tr><td>Motto:</td><td><input type=\"text\" name=\"motto\" value=\""
-										+ pr.getMotto() + "\"></td></tr>");
-							} else {
-								Giocatore g = (Giocatore) pe;
-								out.print("<tr><td>Biografia:</td><td><input type=\"text\" name=\"biografia\" value=\""
-										+ g.getBiografia() + "\"></input></td></tr>");
-								out.print("<tr><td>Anno di nascita:</td><td><input type=\"text\" name=\"annoNascita\" value=\""
-										+ g.getAnnoDiNascita() + "\"></input></td></tr>");
-							}
-						%>
-
-						<tr>
-							<td>Url Avatar:</td>
-							<td><input type="text" name="urlImg"
-							value="${CurrentPersona.avatar}"/></td>
-						</tr>
-
-						<tr>
-							<td>Sito Web:</td>
-							<td><input type="text" name="sito"
-							value="${CurrentPersona.sitoWeb}"/></td>
-						</tr>
-						<tr>
-							<td>Facebook:</td>
-							<td><input type="text" name="facebook"
-							value="${CurrentPersona.facebook}"/></td>
-						</tr>
-						<tr>
-							<td>Twitter:</td>
-							<td><input type="text" name="twitter"
-								value="${CurrentPersona.twitter}" /></td>
-						</tr>
-						<tr>
-							<td>Linkedin:</td>
-							<td><input type="text" name="linkedIn"
-							value="${CurrentPersona.linkedIn}" /></td>
-						</tr>
-					</table>
-					<br> <input type="submit" name="sumbit" value="salva" />
-				</form>
+			<div class="col-dm-6 col-dm-offset-2" style="color: black;">
+				<%
+					for(Partita p : profilePersona.getPartite())
+					{
+						out.print("<div style=\"margin-bottom: 5px;\"> <h3>"+p.getTitolo()+
+						"</h3> <p style=\"margin-left: 15px;\">"+
+						p.getTesto()+"</p></div>");
+					}
+				%>
 			</div>
 		</div>
 	</div>
