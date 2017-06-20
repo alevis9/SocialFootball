@@ -30,7 +30,7 @@
 		style="border-radius: 0px; background: rgb(0, 102, 153); border: 0px">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="LoginPage.jsp" style="color: white;">SocialStartup</a>
+				<a class="navbar-brand" href="LoginPage.jsp" style="color: white;">SocialFootball</a>
 			</div>
 		</div>
 	</nav>
